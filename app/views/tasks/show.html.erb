@@ -1,0 +1,76 @@
+<div class="min-h-screen bg-gray-50 py-12 px-4">
+  <div class="max-w-2xl mx-auto">
+
+    <!-- Header -->
+    <div class="mb-8">
+      <%= link_to "← Back to tasks", tasks_path,
+          class: "text-sm font-medium text-indigo-600 hover:text-indigo-800 transition" %>
+    </div>
+
+    <!-- Task Card -->
+    <div class="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+
+      <div class="flex items-start justify-between gap-4 mb-6">
+
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">
+            <%= @task.title %>
+          </h1>
+
+          <p class="mt-2 text-sm text-gray-500">Task details</p>
+        </div>
+
+        <% if @task.completed %>
+          <span class="shrink-0 rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700">
+            Completed
+          </span>
+        <% else %>
+          <span class="shrink-0 rounded-full bg-amber-100 px-3 py-1 text-sm font-semibold text-amber-700">
+            In Progress
+          </span>
+        <% end %>
+
+      </div>
+
+      <div class="border-t border-gray-100 pt-6">
+        <h3 class="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-500">
+          Description
+        </h3>
+
+        <p class="whitespace-pre-wrap leading-7 text-gray-700">
+          <%= @task.details.presence || "No description provided." %>
+        </p>
+      </div>
+
+      <!-- Completion Status -->
+      <div class="mt-8 flex items-center gap-3 rounded-xl bg-gray-50 p-4">
+
+        <input
+          type="checkbox"
+          <%= 'checked="checked"' if @task.completed %>
+          disabled
+          class="h-5 w-5 rounded border-gray-300 text-indigo-600"
+        >
+
+        <span class="text-sm font-medium text-gray-700">
+          <%= @task.completed ? "You have completed this task!" : "This task is not completed yet." %>
+        </span>
+
+      </div>
+
+      <!-- Actions -->
+      <div class="mt-8 flex flex-wrap gap-3 border-t border-gray-100 pt-6">
+
+        <%= link_to "Edit Task", edit_task_path(@task),
+            class: "rounded-lg bg-indigo-600 px-5 py-3 text-sm font-semibold text-white hover:bg-indigo-700 transition" %>
+
+        <%= link_to "Back to List", tasks_path,
+            class: "rounded-lg border border-gray-300 bg-white px-5 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition" %>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+```
